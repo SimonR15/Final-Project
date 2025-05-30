@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://4p6sdgsu0bj5"]
+
+[ext_resource type="Script" uid="uid://c4wmmp315h33c" path="res://player.gd" id="1_0e48y"]
+[ext_resource type="Texture2D" uid="uid://d2s2f8whk05q2" path="res://icon.svg" id="2_epypp"]
+[ext_resource type="Script" uid="uid://bugl3rrxaowfg" path="res://enemy.gd" id="3_epypp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
+size = Vector2(114, 121)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0hol4"]
+radius = 1500.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
+size = Vector2(125, 125)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_0e48y")
+
+[node name="Icon" type="Sprite2D" parent="Player"]
+texture = ExtResource("2_epypp")
+
+[node name="Collider" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_epypp")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Area2D" type="Area2D" parent="Player/Camera2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Camera2D/Area2D"]
+shape = SubResource("CircleShape2D_0hol4")
+
+[node name="Enemy" type="RigidBody2D" parent="."]
+position = Vector2(200, 400)
+gravity_scale = 0.0
+script = ExtResource("3_epypp")
+
+[node name="Icon" type="Sprite2D" parent="Enemy"]
+texture = ExtResource("2_epypp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+shape = SubResource("RectangleShape2D_0hol4")
