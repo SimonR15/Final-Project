@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://4p6sdgsu0bj5"]
+[gd_scene load_steps=9 format=3 uid="uid://b3jmkl0tdjqg1"]
 
-[ext_resource type="Script" uid="uid://c4wmmp315h33c" path="res://player.gd" id="1_0e48y"]
+[ext_resource type="Script" path="res://player.gd" id="1_0e48y"]
 [ext_resource type="Script" uid="uid://wpm6eunvvr6n" path="res://scr_game_controller.gd" id="1_0hol4"]
 [ext_resource type="Texture2D" uid="uid://d2s2f8whk05q2" path="res://icon.svg" id="2_epypp"]
-[ext_resource type="Script" uid="uid://bugl3rrxaowfg" path="res://enemy.gd" id="3_epypp"]
+[ext_resource type="Script" path="res://enemy.gd" id="3_epypp"]
+[ext_resource type="Script" uid="uid://dyrb150g5ghs2" path="res://area_2d.gd" id="4_q6r6c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
 size = Vector2(114, 121)
@@ -29,6 +30,7 @@ shape = SubResource("RectangleShape2D_epypp")
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="Area2D" type="Area2D" parent="Player"]
+script = ExtResource("4_q6r6c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
 shape = SubResource("CircleShape2D_0hol4")
@@ -43,3 +45,6 @@ texture = ExtResource("2_epypp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 shape = SubResource("RectangleShape2D_0hol4")
+
+[connection signal="body_entered" from="Player/Area2D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Player/Area2D" to="." method="_on_area_2d_body_exited"]
