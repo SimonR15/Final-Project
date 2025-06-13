@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://maagcfrk7p7i"]
+
+[ext_resource type="Script" uid="uid://be7lr0d37p4dv" path="res://attack.gd" id="1_63pi1"]
+[ext_resource type="Texture2D" uid="uid://uqxjmjmh0asx" path="res://TheAttackSprite(Yall BETTTER redo dis one).png" id="2_hqc8w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7yfhp"]
+size = Vector2(28, 59.5)
+
+[node name="Attack" type="Area2D"]
+script = ExtResource("1_63pi1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(11, 21.25)
+shape = SubResource("RectangleShape2D_7yfhp")
+
+[node name="AttackSprite" type="Sprite2D" parent="."]
+z_index = 6
+texture_filter = 1
+position = Vector2(10.5, 21.5)
+scale = Vector2(3.625, 3.9375)
+texture = ExtResource("2_hqc8w")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

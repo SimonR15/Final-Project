@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://clqop435soj6r"]
+
+[ext_resource type="PackedScene" uid="uid://cah8fc2qb2kq3" path="res://base_unit.tscn" id="1_wp66h"]
+[ext_resource type="Script" path="res://combat_unit.gd" id="2_1hs1a"]
+[ext_resource type="Texture2D" uid="uid://d0llp56mt7fvy" path="res://highlight.png" id="3_1hs1a"]
+[ext_resource type="Texture2D" uid="uid://cpk72t48rbagl" path="res://modeFollow.png" id="4_t24kh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t24kh"]
+radius = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pxkml"]
+radius = 156.042
+
+[node name="CombatUnit" instance=ExtResource("1_wp66h")]
+script = ExtResource("2_1hs1a")
+mode = 2
+
+[node name="Sprite" parent="." index="0"]
+z_index = 1
+
+[node name="NavigationAgent2D" parent="." index="2"]
+radius = 64.11
+neighbor_distance = 2704.76
+max_neighbors = 50
+
+[node name="area" type="Area2D" parent="." index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area" index="0"]
+shape = SubResource("CircleShape2D_t24kh")
+
+[node name="Highlight" type="Sprite2D" parent="." index="4"]
+visible = false
+texture_filter = 1
+position = Vector2(0, 7)
+texture = ExtResource("3_1hs1a")
+
+[node name="ModeIndicator" type="Sprite2D" parent="." index="5"]
+z_index = 2
+texture_filter = 1
+position = Vector2(0, -12)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_t24kh")
+
+[node name="ViewBox" type="Area2D" parent="." index="6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ViewBox" index="0"]
+shape = SubResource("CircleShape2D_pxkml")
+
+[connection signal="died" from="." to="." method="_on_died"]
+[connection signal="body_entered" from="ViewBox" to="." method="_on_view_box_body_entered"]
+[connection signal="body_exited" from="ViewBox" to="." method="_on_view_box_body_exited"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cah8fc2qb2kq3"]
+
+[ext_resource type="Script" path="res://unit.gd" id="1_bb42y"]
+[ext_resource type="Texture2D" uid="uid://5otin8fcx3ds" path="res://solider.png" id="1_sl3h6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jktm"]
+size = Vector2(14, 14)
+
+[node name="BaseUnit" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_bb42y")
+moveSpeed = 150.0
+attackRange = 30.0
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_sl3h6")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7jktm")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true

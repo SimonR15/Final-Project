@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7w4cfr2wp3tv"]
+
+[ext_resource type="PackedScene" uid="uid://cah8fc2qb2kq3" path="res://base_unit.tscn" id="1_bg0mc"]
+[ext_resource type="Script" path="res://general.gd" id="2_g3laj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2etkj"]
+radius = 300.0
+
+[node name="General" instance=ExtResource("1_bg0mc")]
+script = ExtResource("2_g3laj")
+
+[node name="Area2D" type="Area2D" parent="." index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_2etkj")
+
+[connection signal="died" from="." to="." method="_on_died"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
